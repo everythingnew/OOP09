@@ -1,0 +1,37 @@
+public class Bruch{
+    int z ;
+    int n ;
+    String zkette;
+    
+    Bruch(String input){
+        zkette = input;
+         z= Integer.valueOf(input.split("/")[0]);
+        System.out.println(z);
+         n= Integer.valueOf(input.split("/")[1]);
+        int teiler = kuerze(z,n);
+        System.out.println(teiler);
+        z= z/teiler;
+        System.out.println(z);
+        n= n/teiler;
+        
+    }
+ public String toString(){//overriding the toString() method  
+  return (z+"/"+n);  
+ }  
+    
+    private int kuerze(int a,int b){
+        int k;
+        while((a%b) !=0){
+             k= a%b;
+             a=b;
+             b=k;
+         }
+        return b;
+    }
+    
+    // public  addiere(String summand){
+    //      Bruch(summand);
+    //   System.out.println(Bruch.z);
+        
+    //  }
+}
