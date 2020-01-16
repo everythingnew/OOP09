@@ -31,7 +31,9 @@ public class Bruch{
          }
          System.out.println("input_z"+input_z);
         x= x/input_z;
+         System.out.println("x "+x);
         y= y/input_z;
+         System.out.println("y "+y);
         int[] gekuerzt = new int[]{x,y};
         return gekuerzt;
     }
@@ -46,7 +48,7 @@ public class Bruch{
     //Produkt von zwei nennern
     int summand_n = this.n*summand.n;
     int summand_z = erste_z+zweite_z;
-    int[] gekuerzt2 = kuerze(summand_n,summand_z);
+    int[] gekuerzt2 = kuerze(summand_z,summand_n);
     return gekuerzt2[0]+"/"+gekuerzt2[1];
     }
 }
