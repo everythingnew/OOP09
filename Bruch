@@ -1,17 +1,20 @@
 public class Bruch{
-    int z ;
-    int n ;
-    String zkette;
+    private int  z ;
+    private int  n ;
     
-    Bruch(String input){
-        zkette = input;
+    public Bruch(String input){
+    
          z= Integer.valueOf(input.split("/")[0]);
         
          n= Integer.valueOf(input.split("/")[1]);
          
-        int gekuerzt[] = kuerze(z,n);
-        z= gekuerzt[0];
-        n= gekuerzt[1];
+        kuerze();
+        
+    }
+    public Bruch(int zaehler, int nenner){
+         z= zaehler;
+         n= nenner;
+         kuerze();
         
     }
     //toString Methode überschreiben
@@ -20,35 +23,33 @@ public class Bruch{
         
     }  
     
-    private int[] kuerze(int input_z,int input_n){
-        int x= input_z;
-        int y= input_n;
+    private void kuerze(){
+        int x= z;
+        int y= n;
         int k;
-        while((input_n%input_z) !=0){
-             k= input_n%input_z;
-             input_n=input_z;
-             input_z=k;
+        while((y%x) !=0){
+             k= y%x;
+             y=x;
+             x=k;
          }
-         System.out.println("input_z"+input_z);
-        x= x/input_z;
-         System.out.println("x "+x);
-        y= y/input_z;
-         System.out.println("y "+y);
-        int[] gekuerzt = new int[]{x,y};
-        return gekuerzt;
+
+        this.z= this.z/x;
+
+        this.n= this.n/x;
     }
     
-    public String addiere(String input_summand){
-    Bruch summand = new Bruch(input_summand);
+   
+    public Bruch addiere(Bruch summand){
+ 
     //zwei neue zähler ergibt aus Produkt von zählern und nennern
     int erste_z= this.z *summand.n ;
-     System.out.println("this.z "+ this.z+" summand.n " +summand.n);
     int zweite_z = this.n * summand.z;
-     System.out.println("zweite_z"+zweite_z);
     //Produkt von zwei nennern
     int summand_n = this.n*summand.n;
     int summand_z = erste_z+zweite_z;
-    int[] gekuerzt2 = kuerze(summand_z,summand_n);
-    return gekuerzt2[0]+"/"+gekuerzt2[1];
+    Bruch b= new Bruch(summand_z,summand_n);
+    b.kuerze();
+    return b;
     }
+    
 }
