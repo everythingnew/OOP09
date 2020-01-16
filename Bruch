@@ -23,14 +23,15 @@ public class Bruch{
     private int[] kuerze(int input_z,int input_n){
         int x= input_z;
         int y= input_n;
-        int k=0;
+        int k;
         while((input_n%input_z) !=0){
              k= input_n%input_z;
              input_n=input_z;
              input_z=k;
          }
-        x= x/k;
-        y= y/k;
+         System.out.println("input_z"+input_z);
+        x= x/input_z;
+        y= y/input_z;
         int[] gekuerzt = new int[]{x,y};
         return gekuerzt;
     }
@@ -39,7 +40,9 @@ public class Bruch{
     Bruch summand = new Bruch(input_summand);
     //zwei neue zähler ergibt aus Produkt von zählern und nennern
     int erste_z= this.z *summand.n ;
-    int zweite_z = this.n + summand.z;
+     System.out.println("this.z "+ this.z+" summand.n " +summand.n);
+    int zweite_z = this.n * summand.z;
+     System.out.println("zweite_z"+zweite_z);
     //Produkt von zwei nennern
     int summand_n = this.n*summand.n;
     int summand_z = erste_z+zweite_z;
