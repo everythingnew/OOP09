@@ -6,32 +6,44 @@ public class Bruch{
     Bruch(String input){
         zkette = input;
          z= Integer.valueOf(input.split("/")[0]);
-        System.out.println(z);
+        
          n= Integer.valueOf(input.split("/")[1]);
-        int teiler = kuerze(z,n);
-        System.out.println(teiler);
-        z= z/teiler;
-        System.out.println(z);
-        n= n/teiler;
+         
+        int gekuerzt[] = kuerze(z,n);
+        z= gekuerzt[0];
+        n= gekuerzt[1];
         
     }
- public String toString(){//overriding the toString() method  
-  return (z+"/"+n);  
- }  
+    //toString Methode überschreiben
+    public String toString(){ 
+        return (z+"/"+n); 
+        
+    }  
     
-    private int kuerze(int a,int b){
-        int k;
-        while((a%b) !=0){
-             k= a%b;
-             a=b;
-             b=k;
+    private int[] kuerze(int input_z,int input_n){
+        int x= input_z;
+        int y= input_n;
+        int k=0;
+        while((input_n%input_z) !=0){
+             k= input_n%input_z;
+             input_n=input_z;
+             input_z=k;
          }
-        return b;
+        x= x/k;
+        y= y/k;
+        int[] gekuerzt = new int[]{x,y};
+        return gekuerzt;
     }
     
-    // public  addiere(String summand){
-    //      Bruch(summand);
-    //   System.out.println(Bruch.z);
-        
-    //  }
+    public String addiere(String input_summand){
+    Bruch summand = new Bruch(input_summand);
+    //zwei neue zähler ergibt aus Produkt von zählern und nennern
+    int erste_z= this.z *summand.n ;
+    int zweite_z = this.n + summand.z;
+    //Produkt von zwei nennern
+    int summand_n = this.n*summand.n;
+    int summand_z = erste_z+zweite_z;
+    int[] gekuerzt2 = kuerze(summand_n,summand_z);
+    return gekuerzt2[0]+"/"+gekuerzt2[1];
+    }
 }
